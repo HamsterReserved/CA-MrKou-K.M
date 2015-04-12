@@ -1,10 +1,9 @@
 package k.app;
 
 import android.app.Activity;
-import android.content.ContentResolver;
+import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
-import android.provider.ContactsContract;
 import android.widget.TextView;
 
 import java.util.ArrayList;
