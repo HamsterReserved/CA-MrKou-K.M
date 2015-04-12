@@ -55,7 +55,6 @@ public class MainActivity extends ActionBarActivity {
 
     class SmsListAdapter extends BaseAdapter {
         private LayoutInflater layoutinflater;
-        private View myview;
 
         public SmsListAdapter(Context c) {
             layoutinflater = LayoutInflater.from(c);
@@ -82,17 +81,17 @@ public class MainActivity extends ActionBarActivity {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             if (convertView == null) {
-                myview = layoutinflater.inflate(R.layout.listitem, null);
+                convertView = layoutinflater.inflate(R.layout.listitem, null);
             }
 
 
-            TextView body = (TextView) myview
+            TextView body = (TextView) convertView
                     .findViewById(R.id.TextView_SmsBody);
-           // TextView name = (TextView) myview
+           // TextView name = (TextView) convertView
                 //    .findViewById(R.id.TextView_SmsName);
             body.setText(infos.get(position).getSmsbody());
          //   name.setText(infos.get(position).getName());
-            return myview;
+            return convertView;
 
         }
 
