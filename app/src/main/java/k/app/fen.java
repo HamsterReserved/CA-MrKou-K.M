@@ -14,41 +14,41 @@ import java.util.List;
  * Created by lenovo on 2015/3/24.
  */
 public class fen {
-    private Activity activity;
+    private Context mContext;
     private Uri uri;
     public List<Smsinfo> infos;
     private TextView info ;
 
-    public fen(Activity activity, Uri uri) {
+    public fen(Context context, Uri uri) {
         infos= new ArrayList<Smsinfo>();
-        this.activity = activity;
+        this.mContext = context;
         this.uri = uri;
     }
 
     public List<Smsinfo>  getSmsInfo() {
         String[] projection = new String[]{"_id", "address", "person",
                 "body", "date", "type"};
-        Cursor cusor = activity.managedQuery(uri, projection, null, null,
+        Cursor cursor = mContext.getContentResolver().query(uri, projection, null, null,
                 "date desc");
-        int nameColumn = cusor.getColumnIndex("person");
-        int phoneNumberColumn = cusor.getColumnIndex("address");
-        int smsbodyColumn = cusor.getColumnIndex("body");
-        int dateColumn = cusor.getColumnIndex("date");
-        int typeColumn = cusor.getColumnIndex("type");
-        if (cusor != null) {
+        int nameColumn = cursor.getColumnIndex("person");
+        int phoneNumberColumn = cursor.getColumnIndex("address");
+        int smsbodyColumn = cursor.getColumnIndex("body");
+        int dateColumn = cursor.getColumnIndex("date");
+        int typeColumn = cursor.getColumnIndex("type");
+        if (cursor != null) {
 
-            while (cusor.moveToNext()) {
+            while (cursor.moveToNext()) {
                 Smsinfo smsinfo = new Smsinfo();
-                smsinfo.setName(cusor.getString(nameColumn));
-                smsinfo.setDate(cusor.getString(dateColumn));
-                smsinfo.setPhoneNumber(cusor.getString(phoneNumberColumn));
-                smsinfo.setSmsbody(cusor.getString(smsbodyColumn));
-                smsinfo.settype(cusor.getString(typeColumn));
+                smsinfo.setName(cursor.getString(nameColumn));
+                smsinfo.setDate(cursor.getString(dateColumn));
+                smsinfo.setPhoneNumber(cursor.getString(phoneNumberColumn));
+                smsinfo.setSmsbody(cursor.getString(smsbodyColumn));
+                smsinfo.settype(cursor.getString(typeColumn));
                 infos.add(smsinfo);
 
             }
         }
-        cusor.close();
+        cursor.close();
 
         return infos;
     }

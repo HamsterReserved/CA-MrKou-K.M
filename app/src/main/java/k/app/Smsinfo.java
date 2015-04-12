@@ -11,9 +11,6 @@ public class Smsinfo {
     private String date;
     private String name ;
     private String type ;
-    public String getSmsbdy(){
-        return smsbody;
-    }
     public  void setSmsbody(String smsbody){
         this.smsbody = smsbody;
     }
